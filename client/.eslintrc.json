@@ -1,0 +1,25 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": ["plugin:react/recommended", "airbnb"],
+  "overrides": [],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["react"],
+  "rules": {
+    "react/state-in-constructor": 0, //add by me
+    "react/destructuring-assignment": 0, //add by me
+    "no-console": "off", //add by me
+    "semi": 0, //add by me
+    "comma": 0, //add by me
+    "react/prop-types": 0, //add by me
+    "react/react-in-jsx-scope": 0, //add by me
+    "react/jsx-filename-extension": 0, //add by me
+    "comma-dangle": ["error", "never"], //add by me
+    "import/prefer-default-export": 0 //add by me
+  }
+}
