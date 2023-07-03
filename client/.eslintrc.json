@@ -19,7 +19,6 @@
     "react/prop-types": 0, //add by me
     "react/react-in-jsx-scope": 0, //add by me
     "react/jsx-filename-extension": 0, //add by me
-    "comma-dangle": ["error", "never"], //add by me
-    "import/prefer-default-export": 0 //add by me
+    "comma-dangle": ["error", "never"] //add by me
   }
 }

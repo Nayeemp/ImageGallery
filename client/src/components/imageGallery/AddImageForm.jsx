@@ -1,10 +1,10 @@
-/* eslint-disable max-len */
+/* eslint-disable import/named */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable react/jsx-no-duplicate-props */
 import React, { useRef, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { addImage, fetchImages } from '../../features/imageGallery/imageGallerySlice';
+import { useDispatch } from 'react-redux';
+import { useAddImageMutation } from '../../features/api/apiSlice';
 import Error from '../Error';
 
 function AddImageForm() {
@@ -13,7 +13,16 @@ function AddImageForm() {
   const [imageFieldSize, setImageFieldSize] = useState();
   const imageField = useRef();
 
-  const { isError } = useSelector((state) => state.ImageGallery);
+  const [addImage, { isLoading, isError, error }] = useAddImageMutation();
+  let content = null;
+  if (!isLoading && isError) {
+    console.log(error);
+    if (error?.data?.message) {
+      content = <Error message={error.data.message} />;
+    } else {
+      content = <Error message="There is an error" />;
+    }
+  }
 
   const dispatch = useDispatch();
 
@@ -29,10 +38,7 @@ function AddImageForm() {
       //   console.log(`${key}: ${value}`)
       // }
 
-      const result1 = await dispatch(addImage(formData));
-      if (result1.meta.requestStatus === 'fulfilled') {
-        dispatch(fetchImages());
-      }
+      addImage(formData);
 
       imageField.current.value = null;
       setTitle('');
@@ -71,6 +77,7 @@ function AddImageForm() {
         />
       </form>
       {(imageFieldSize > 5 * 1024 * 1024) && <Error message="image size must be less then 5mb" /> }
+      {content }
     </div>
   );
 }
