@@ -28,8 +28,7 @@ This project was crated with Tailwind CSS, [Create React App](https://github.com
 
 1.  React
 2.  Redux Toolkit
-3.  createAsyncThunk
-4.  Axios (next branch we will use RTK Query)
+3.  RTK Query
 
 ## Back End:
 
